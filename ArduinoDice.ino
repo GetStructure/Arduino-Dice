@@ -28,8 +28,8 @@ int four[] = { leftTop, leftBottom, rightTop, rightBottom };
 int five[] = { leftTop, leftBottom, middleMiddle, rightTop, rightBottom };
 int six[] = { leftTop, leftMiddle, leftBottom, rightTop, rightMiddle, rightBottom };
 
-// All possible roles.
-int* roles[] = { one, two, three, four, five, six };
+// All possible rolls.
+int* rolls[] = { one, two, three, four, five, six };
 
 // The pin the button is connected to.
 int buttonPin = 12;
@@ -69,7 +69,7 @@ void loop() {
       
       if(buttonState == HIGH) {
         shuffle();
-        role();
+        roll();
       }
     }
   }
@@ -81,13 +81,13 @@ void loop() {
  * Rolls a dice by randomly choosing a number and
  * lighting up the appropriate LEDs.
  */
-void role() {
+void roll() {
 
   // Randomly pick a dice roll.
   int number = random(0, 6);
 
   // Grab the pins that make up this roll.
-  int* rolePins = roles[number];
+  int* rollPins = rolls[number];
 
   // Turn off all LEDs.
   for(int i = 0; i < numLedPins; i++) {
@@ -96,7 +96,7 @@ void role() {
 
   // Turn on the LEDs that repesent the dice roll.
   for(int i = 0; i < number + 1; i++) {
-    digitalWrite(rolePins[i], HIGH);
+    digitalWrite(rollPins[i], HIGH);
   }
 }
 
@@ -105,7 +105,7 @@ void role() {
  */
 void shuffle() {
   for(int i = 0; i < 25; i++) {
-    role();
+    roll();
     delay(40);   
   }
 }
